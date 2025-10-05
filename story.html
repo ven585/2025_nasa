@@ -8,9 +8,10 @@
   <style>
     :root{
       --card-bg: rgba(255,255,255,0.95);
-      --accent: #f76c6c;
-      --heading: #374785;
-      --text: #263238;
+      --accent: #FF5A5F; /* Brighter, kid-friendly red */
+      --heading: #4A90E2; /* Brighter blue for headings */
+      --text: #333333;
+      --highlight-text: #F5A623; /* Fun yellow/orange highlight */
     }
 
     /* Background inspired by StoryBee pastel / sky look */
@@ -19,78 +20,145 @@
       margin: 0;
       padding: 20px 12px;
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.6;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255,255,255,0.30), transparent 10%),
-        radial-gradient(circle at 90% 90%, rgba(230,245,255,0.35), transparent 12%),
-        linear-gradient(180deg, #f2f9ff 0%, #fffaf2 40%, #f7fbff 100%);
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,0.40), transparent 10%),
+        radial-gradient(circle at 90% 90%, rgba(200,220,255,0.45), transparent 12%),
+        linear-gradient(180deg, #e0f0ff 0%, #fffaff 40%, #e0f8ff 100%); /* Lighter, more vibrant background */
       min-height: 100vh;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
 
     .story-container {
-      max-width: 900px;
+      max-width: 800px; /* Slightly smaller for a book feel */
       margin: 28px auto;
-      padding: 20px;
+      padding: 15px;
     }
 
     h1 {
       text-align: center;
       color: var(--heading);
-      font-size: 2.4em;
-      margin: 8px 0 18px;
-      letter-spacing: 0.2px;
+      font-size: 2.5em;
+      margin: 10px 0 20px;
+      letter-spacing: 0.5px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Subtle fun effect */
     }
 
     h2 {
       color: var(--heading);
-      border-left: 6px solid var(--accent);
-      padding-left: 12px;
-      margin-top: 36px;
-      font-size: 1.35em;
+      border-left: 8px solid var(--accent); /* Thicker accent line */
+      padding-left: 15px;
+      margin-top: 40px;
+      font-size: 1.5em;
+      font-weight: 700;
+    }
+    
+    /* Style for the inline info link (GOES) */
+    .info-link {
+        color: var(--accent);
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: 700;
+        text-shadow: 0 0 1px rgba(0,0,0,0.1);
+    }
+    .info-link:hover {
+        color: var(--heading);
     }
 
-    p { font-size: 1.02em; color: var(--text); text-align: justify; margin: 12px 0; }
+    p { font-size: 1.05em; color: var(--text); text-align: justify; margin: 15px 0; }
 
     .section-card {
       background: var(--card-bg);
-      border-radius: 14px;
-      box-shadow: 0 10px 28px rgba(20,30,60,0.06);
-      padding: 26px;
-      margin-bottom: 28px;
-      transition: transform .25s ease, box-shadow .25s ease;
+      border-radius: 20px; /* Rounded corners for a softer look */
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+      padding: 30px;
+      margin-bottom: 35px;
+      transition: transform .3s ease, box-shadow .3s ease;
+      border: 1px solid #eee;
     }
-    .section-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(20,30,60,0.08); }
+    .section-card:hover { transform: translateY(-8px) rotate(-0.5deg); box-shadow: 0 20px 50px rgba(0,0,0,0.15); } /* Playful hover */
 
-    /* MODIFIED: Left align images and remove margins */
-    .image-wrapper { text-align: left; margin: 0; }
-    .image-wrapper img { width: 50%; height: 50%; border-radius: 12px; box-shadow: 0 6px 18px rgba(30,40,60,0.06); }
+    .image-wrapper { text-align: center; margin: 15px 0; }
+    .image-wrapper img { max-width: 90%; height: auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 4px solid #fff; }
 	
-	.image-wrapper-act { text-align: left; margin: 0; }
-    .image-wrapper-act img { width: 100%; max-width: 100%; border-radius: 12px; box-shadow: 0 6px 18px rgba(30,40,60,0.06); }
+	.image-wrapper-act { text-align: center; margin: 15px 0; }
+    .image-wrapper-act img { max-width: 100%; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
 
-    /* highlight styling aligned with heading color */
-    .highlight { font-weight: 600; color: var(--heading); }
+    /* highlight styling aligned with highlight color */
+    .highlight { font-weight: 800; color: var(--highlight-text); text-shadow: 0 0 1px #333; }
 
-    table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.95em; }
-    th, td { border: 1px solid #e3e7ee; padding: 10px; text-align: center; vertical-align: middle; }
-    th { background: linear-gradient(180deg,#f7fbff,#eef6ff); color: var(--heading); font-weight: 600; }
-    td.left { text-align: left; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; border-radius: 10px; overflow: hidden; }
+    th, td { border: none; padding: 12px; text-align: center; vertical-align: middle; }
+    th { background: var(--heading); color: white; font-weight: 700; text-transform: uppercase; }
+    tr:nth-child(even) { background: #f0f8ff; } /* Zebra striping */
+    tr:nth-child(odd) { background: #ffffff; }
+    td.left { text-align: left; font-weight: 600; color: var(--heading); }
 
-    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 16px; }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-    button { padding: 10px 18px; background-color: var(--accent); color: white; border: none; border-radius: 9px; cursor: pointer; font-size: 15px; }
-    button:hover { opacity: 0.95; transform: translateY(-1px); }
+    button { 
+        padding: 12px 24px; 
+        background-color: var(--accent); 
+        color: white; 
+        border: 2px solid #fff; /* Button outline */
+        border-radius: 25px; 
+        cursor: pointer; 
+        font-size: 16px; 
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: all 0.2s ease;
+    }
+    button:hover { 
+        background-color: #FF7777; /* Slightly lighter on hover */
+        transform: scale(1.05) translateY(-2px); 
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* New styles for the custom audio player */
+    .audio-player {
+        margin: 15px auto 25px auto;
+        max-width: 600px;
+    }
+    .controls-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        background: #f0f8ff; /* Light background for controls */
+        border: 1px solid #d0e0ff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .audio-player button {
+        flex-shrink: 0;
+        padding: 8px 15px;
+        font-size: 1.0em;
+        line-height: 1;
+    }
+    .progress-container {
+        flex-grow: 1;
+        height: 10px;
+        background: #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer; /* Allows seeking */
+    }
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background-color: var(--heading); /* Blue progress bar */
+        transition: width 0.1s linear;
+    }
 
     /* Quiz modal */
     #quiz-modal {
-      display: none; /* Crucial: ensures it doesn't show on load */
+      display: none;
       position: fixed;
       z-index: 2000;
       left: 0; top: 0; right: 0; bottom: 0;
-      background-color: rgba(6,10,20,0.65);
+      background-color: rgba(6,10,20,0.85); /* Darker overlay */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -98,168 +166,187 @@
     }
     .quiz-container {
       width: 100%;
-      max-width: 900px;
+      max-width: 700px; /* More manageable quiz size */
       max-height: 90vh;
       overflow: auto;
-      border-radius: 12px;
-      /* Adjusted gradient for a more 'space-like' look */
-      background: linear-gradient(180deg, #0e172a 0%, #171d3a 100%);
+      border-radius: 15px;
+      background: linear-gradient(180deg, #374785 0%, #1f2746 100%); /* Deep space colors */
       color: #fff;
-      padding: 20px 22px;
-      box-shadow: 0 18px 60px rgba(2,10,30,0.6);
+      padding: 30px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.8);
       position: relative;
+      border: 5px solid var(--accent); /* Accent border */
     }
-    .quiz-container h1 { color: #d6e7ff; margin-top: 6px; }
-    .quiz-container p { color: #f2f7ff; text-align: left; } /* Ensures score color is visible */
-    .close-button { position: absolute; right: 18px; top: 14px; font-size: 28px; cursor: pointer; color: #d6e7ff; }
+    .quiz-container h1 { color: #fff; margin-top: 0; font-size: 2em; }
+    .quiz-container p { color: #e0f0ff; text-align: left; }
+    .close-button { position: absolute; right: 20px; top: 15px; font-size: 32px; cursor: pointer; color: var(--accent); text-shadow: 1px 1px 3px #000; }
 
-    .quiz-question { margin: 14px 0; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; }
-    .options { margin-top: 8px; display: grid; gap: 8px; }
-    .option { background: rgba(255,255,255,0.03); padding: 8px; border-radius: 6px; display:flex; align-items:center; gap:10px; cursor:pointer; }
-    .option input { transform: scale(1.15); }
-    .result { margin-top: 8px; font-weight:700; }
-    .correct { color: #9ef0b0; } .incorrect { color: #ffb4b4; }
+    .quiz-question { margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px; }
+    .options { margin-top: 10px; display: grid; gap: 10px; }
+    .option { background: rgba(255,255,255,0.08); padding: 12px; border-radius: 8px; display:flex; align-items:center; gap:12px; cursor:pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; }
+    .option:hover { background: rgba(255,255,255,0.15); border-color: var(--accent); }
+    .option input { transform: scale(1.2); accent-color: var(--accent); }
+    .result { margin-top: 10px; font-weight:800; }
+    .correct { color: #A8FF78; } /* Bright Green */ 
+    .incorrect { color: #FFD25F; } /* Warm Yellow for "incorrect" feedback */
 
-    #results { margin-top: 18px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 8px; color: #f2f7ff; }
+    #results { margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.15); border-radius: 10px; color: #fff; }
+    /* IMPORTANT: Changed score color to red as requested */
+    #results p strong { color: var(--accent); font-size: 1.2em; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
 
     /* Event popup modal */
-    #event-modal { display:none; position: fixed; z-index:2100; left:0; top:0; right:0; bottom:0; background: rgba(0,0,0,0.6); align-items:center; justify-content:center; padding:16px; }
-    .event-card { width:100%; max-width:680px; background:white; color:#122; border-radius:10px; padding:16px; box-shadow:0 18px 60px rgba(2,10,30,0.35); }
-    .event-card img { width:100%; border-radius:8px; margin-bottom:8px; }
-    .event-card .close { float:right; cursor:pointer; font-size:20px; color:#555; }
+    #event-modal { display:none; position: fixed; z-index:2100; left:0; top:0; right:0; bottom:0; background: rgba(0,0,0,0.75); align-items:center; justify-content:center; padding:16px; }
+    .event-card { width:100%; max-width:550px; background:white; color:#122; border-radius:15px; padding:20px; box-shadow:0 25px 80px rgba(0,0,0,0.5); border: 4px solid var(--highlight-text); }
+    .event-card img { width:100%; border-radius:10px; margin-bottom:10px; }
+    .event-card .close { float:right; cursor:pointer; font-size:24px; color:var(--accent); font-weight: bold; }
 
     /* responsive */
-    @media (max-width:720px){
-      .story-container { padding: 12px; }
-      h1{ font-size:1.8em; }
-      .quiz-container{ padding:16px; }
-      th, td{ font-size:0.9em; padding:8px; }
+    @media (max-width:600px){
+      .story-container { padding: 10px; }
+      h1{ font-size:1.6em; }
+      h2{ font-size:1.3em; }
+      .quiz-container{ padding:20px; }
+      th, td{ font-size:0.8em; padding:6px; }
+      .controls-wrapper { flex-direction: column; gap: 10px; }
+      .audio-player button { width: 100%; }
+      .progress-container { width: 100%; }
     }
   </style>
 </head>
 <body>
   <div class="story-container">
 
-    <h1>Northern Lights and Network Frights: A Space Weather Adventure</h1>
-
-    <div class="section-card">
-      <h2>Foreword</h2>
-      <p>You know weather on Earth. But do you wonder — what is space weather? Do you know why certain space weather events can’t be predicted even with sophisticated space observatories? Do you know there are some earthlings who get excited about solar flares? Why do people know less about space weather?</p>
-      <p>Here is an interesting story that makes you familiarized with space weather. Keep reading. You will be quizzed at the end. In the story, Alex & Chloe learn about space weather. Alex & Chloe score 10/10 in the story quiz. Let’s see how much you score.</p>
-    </div>
-
-    <div class="section-card">
-      <h2>The Trip to Greenland</h2>
-      <p>Three friends went on a trip to Greenland: Alex the Photographer, Chloe the Cyber Expert, and Ben the Space Scientist (joining a day later). Alex hoped to capture the Northern Lights; Chloe planned to continue important work on her project while there.</p>
-      <div class="image-wrapper">
-        <img src="images/1_background.png" alt="Alex capturing auroras while Chloe looks worried about the network." />
+    <h1>Northern Lights and Network Frights: A Space Weather Adventure! 🚀</h1>
+    <div class="audio-player">
+      <audio id="foreword-audio" src="audios/audio.mp3" preload="metadata"></audio>
+      <div class="controls-wrapper">
+          <button id="play-pause-button" aria-label="Play">▶️ Listen to the Story</button>
+          <div id="progress-container" class="progress-container" aria-label="Audio progress bar">
+              <div id="progress-bar" class="progress-bar"></div>
+          </div>
       </div>
     </div>
 
     <div class="section-card">
-      <h2>Auroras and Outages</h2>
-      <p>When they arrived, Alex was excited — the Aurora Borealis was glowing brighter than ever and he immediately began photographing. Chloe discovered a sudden network outage — her computer couldn't connect and communications were down.</p>
+      <h2>Foreword: Welcome to Space Weather! ☀️</h2>
+      <p>You know about rain, snow, and wind on Earth. But have you ever heard of **Space Weather**? It's like a big, invisible storm coming from the Sun!</p>
+      <p>Sometimes, these space storms are hard to predict, even with super-smart telescopes. Guess what? Some people on Earth actually get excited about them! Why don't more people know about this amazing stuff?</p>
+      <p>Get ready for a cool story about Alex and Chloe, who learn all about these solar secrets. There’s a fun quiz at the end! Alex and Chloe got a perfect score. Let's see if you can too!</p>
+    </div>
+
+    <div class="section-card">
+      <h2>The Trip to Greenland: Hello, Ice! 👋</h2>
+      <p>Three friends started a big adventure to Greenland: Alex the Photographer (who loves snapping pics), Chloe the Cyber Expert (who loves computers), and Ben the Space Scientist (who would join them a day later). Alex hoped to capture the glowing **Northern Lights**. Chloe planned to work on her critical project while enjoying the view.</p>
+      <div class="image-wrapper">
+        <img src="images/1_background.png" alt="Alex and Chloe arriving in Greenland." />
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2>Super-Power Lights and Broken Internet! 💔</h2>
+      <p>As soon as they arrived, Alex shouted with excitement! The **Aurora Borealis** (that's the fancy name for the Northern Lights) was glowing brighter and more colorful than ever. He started clicking photos right away.</p>
+      <p>But Chloe frowned. Her computer screen showed a big red 'X'—the internet and their walkie-talkie communications were completely **down**!</p>
       <div class="image-wrapper">
         <img src="images/2_day_of_reaching.png" alt="Auroras and network outage." />
       </div>
     </div>
 
     <div class="section-card">
-      <h2>The Secret is Revealed</h2>
-      <p>The next day Ben arrived. Alex told him about the lights and Chloe explained the network outage.</p>
+      <h2>The Secret is Revealed: Ben Explains! 🤫</h2>
+      <p>The next morning, Ben the scientist arrived. Alex showed him the amazing photos, and Chloe showed him the network error. Ben just smiled.</p>
       <div class="image-wrapper">
         <img src="images/3_scientist_joins.png" alt="The three friends discussing." />
       </div>
-      <p>Ben smiled and explained: "Friends, the amazing lights and the broken network are both caused by one powerful thing: <span class="highlight">Space Weather</span>!"</p>
-      <p>"Let me show you a video to explain what Space Weather is and how it affects Earth."</p>
+      <p>Ben explained: "Friends, the beautiful lights and the broken network are both two sides of the same coin! They're both caused by one powerful thing: the **<span class="highlight">Space Weather</span>**!"</p>
+      <p>"Let me show you a quick video that explains what this Space Weather is and how it tickles our Earth."</p>
 
       <div class="video-wrapper">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/nu-nqOJU55s?start=0&end=129&rel=0&showinfo=0&modestbranding=1&controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <p style="font-size:0.9em; color:#666;">**Credit: European Space Agency (ESA)**</p>
+      
+      <p style="font-size:0.9em; color:#666; text-align:center;">**Video Credit: European Space Agency (ESA)**</p>
     </div>
 
     <div class="section-card">
-      <h2>Understanding the Power</h2>
-      <p>Alex: "Now I understand why the auroras were so beautiful — space weather brought them out!"</p>
-      <p>Chloe: "Oh no — now I understand why my network failed. But does space weather only affect networks? Since when these events started happening? What are the major event types of space weather?"</p>
+      <h2>Understanding the Power: What Else Happens? 🤔</h2>
+      <p>Alex: "Wow! So the Space Weather makes the lights so beautiful! That's cool!"</p>
+      <p>Chloe: "Oh dear! So the Space Weather is why my network broke! But does it only break networks? When did these big solar storms start? And what are the different types of Space Weather events?"</p>
     </div>
 
     <div class="section-card">
-      <h2>More Impacts from Space</h2>
-      <p>Ben: "Let me explain each question. Firstly, space weather has many impacts. Look at this picture to see different things it can affect."</p>
+      <h2>More Impacts: Space-Junk Surprise! 🛰️</h2>
+      <p>Ben: "Great questions! Firstly, Space Weather can affect lots of things. It can mess with radio signals, make power grids rumble, and even cause problems for **satellites** orbiting Earth! Look at this picture to see all the places it touches."</p>
       <div class="image-wrapper-act">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Space_weather_effects.jpg/1000px-Space_weather_effects.jpg" alt="Space weather effects diagram">
-        <p style="font-size:0.9em; color:#666;">**Credit: ESA/Science Office, CC BY-SA IGO 3.0**</p>
+        <p style="font-size:0.9em; color:#666; text-align:center;">**Image Credit: ESA/Science Office**</p>
       </div>
     </div>
 
     <div class="section-card">
-      <h2>Historical Timeline of Space Weather</h2>
-      <p>Ben continues to explain...</p>
-	  <p>Secondly, space weather events had affected us for centuries. Just note that they happen quite rarely. Hence, most of the people know little to no information about space weather. For example, the happening of CME event in a decade is less than 12%. Here is the list of major space weather events in the past.</p>
+      <h2>Historical Timeline: Old Stories! 🕰️</h2>
+      <p>Ben continued to explain...</p>
+	  <p>Secondly, these space storms have been happening for hundreds of years! They are quite **rare**, which is why most people don't worry about them every day. For example, happening of a super-huge storm called a CME in a decade is less than 12%! Here are some of the biggest space weather events from the past.</p>
       <div class="image-wrapper-act">
         <img src="images/Timeline.png" alt="Space weather effects diagram">
       </div>
       </div>
 
     <div class="section-card">
-      <h2>What Are the Three Big Events in Space Weather?</h2>
-      <p>Ben continues to explain...</p>
-	  <p>Thirdly, the three main drivers of the space weather are listed below.</p>
+      <h2>Star-Storm Rumble: The Three Big Events! 💥</h2>
+      <p>Ben continued to explain...</p>
+	  <p>Thirdly, there are three main types of explosions and eruptions that cause our Space Weather!</p>
 
       <table>
         <thead>
           <tr>
-            <th>Info</th>
+            <th>What is it?</th>
             <th>Solar Flares 🔥</th>
-            <th>Coronal Mass Ejections 🚀</th>
-            <th>Solar Particle Events ✨</th>
+            <th>Coronal Mass Ejections (CME) 💣</th>
+            <th>Solar Energetic Particle Events (SEP) ⚡</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="left"><strong>Definition</strong></td>
-            <td>Massive explosion of light and X-rays from the Sun.</td>
-            <td>Huge bubble of plasma & magnetic field ejected from the Sun.</td>
-            <td>Blast of energetic charged particles following a flare.</td>
+            <td class="left"><strong>What it looks like</strong></td>
+            <td>A massive, bright flash of light and X-rays from the Sun.</td>
+            <td>A giant bubble of magnetic energy and gas bursting from the Sun.</td>
+            <td>A speedy blast of tiny, high-energy particles.</td>
           </tr>
           <tr>
-            <td class="left"><strong>Effects</strong></td>
-            <td>Immediate radio/GPS disruption on sunlit side.</td>
-            <td>Causes geomagnetic storms, auroras, power grid issues. <br/><em>Time to impact:</em> 1–4 days typical.</td>
-            <td>Radiation hazard to astronauts & satellites. <br/><em>Time to impact:</em> hours to days (depending on energy).</td>
+            <td class="left"><strong>What it does</strong></td>
+            <td>Quickly messes up radio and GPS signals (but only on the side facing the Sun).</td>
+            <td>Causes magnetic storms, brings the Northern Lights, and can hurt power grids.</td>
+            <td>A danger to astronauts and damages sensitive equipment on satellites.</td>
           </tr>
           <tr>
-            <td class="left"><strong>Time to impact </strong><br/></td>
-            <td>8 minutes</td>
-            <td>1–3 days (CME travel time typical)</td>
-            <td>Hours–days (particle arrival depends on energy)</td>
+            <td class="left"><strong>How fast does it hit Earth?</strong><br/></td>
+            <td>8 minutes (super fast, the speed of light!)</td>
+            <td>1–3 days (Fast, but gives us time to prepare)</td>
+            <td>Minutes to a few hours (Depends on how fast the particles are zooming!)</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="section-card">
-      <h2>Nothing lasts forever</h2>
-      <p>Ben: "Don't worry, Chloe. The solar event will be over after one day. Just I got the information collected from GOES R-Series satellites. Note that most solar flares and CMEs calm down quickly."</p>
-      <p><em>Chloe responded:</em> "That's reassuring — thank you, Ben. We'll keep an eye on systems for a day and plan to reconnect with our teams once the ionosphere stabilizes." </p>
+      <h2>Nothing Lasts Forever: Time to Chill! 😌</h2>
+      <p>Ben: "Don't worry, Chloe. The solar event won't last forever. I just got a reading from the special <a href="#" class="info-link" data-info="goes">GOES R-Series satellites</a>. Most big flares and CMEs calm down within a day."</p>
+      <p><em>Chloe responded:</em> "That makes me feel much better, Ben! We'll just wait it out and plan to get back online once the sky-layers (the ionosphere) are stable again." </p>
     </div>
 
     <div class="section-card">
-      <h2>Recovery Time</h2>
-
-      <p>As mentioned by Ben, the event impact stabilizes, and the things become normal. Chloe is much delighted to resume her critical project work. Now, there is more smile on her face.</p>
+      <h2>Recovery Time: Back to Smiles! 😁</h2>
+      <p>Just as Ben said, the space storm settled down, and everything went back to normal. Chloe was very happy to get back to her important computer work! Now, there was a big smile on her face again.</p>
       <div class="image-wrapper">
-        <img src="images/Chloe_delighted.png" alt="Three friends leaving Greenland" />
+        <img src="images/Chloe_delighted.png" alt="Chloe smiling, happy that the network is back" />
       </div>	  
     </div>
 	
     <div class="section-card">
-      <h2>The conclusion</h2>
-      <p>All three enjoys the time in Greenland for a day more. Ben suggests both of them to take the following quiz. Both Alex & Chloe scored 10/10. </p>
+      <h2>The Conclusion: What an Adventure! 🥳</h2>
+      <p>The three friends stayed in Greenland for one more happy day. Ben suggested they take a fun final test to see what they learned. Alex and Chloe both took the quiz and scored a perfect **10 out of 10**!</p>
       
-      <p>Finally, Alex, Chloe, and Ben left for their homes. Both the Photographer and the Cyber Expert had learned a lot about the amazing and sometimes scary power of Space Weather. It was an adventure they would never forget!</p>
+      <p>Finally, Alex, Chloe, and Ben all headed home. The Photographer and the Cyber Expert had learned so much about the beautiful, amazing, and sometimes scary power of Space Weather. It was a polar adventure they would never, ever forget!</p>
 
       <div class="image-wrapper">
         <img src="images/10_leaving_greenland.png" alt="Three friends leaving Greenland" />
@@ -267,20 +354,26 @@
     </div>
 	
     <div class="section-card">
-      <h2>Test your knowledge!</h2>
-      <p>Let's test your understanding of Space Weather with a short quiz based only on the story above.</p>
-      <button id="start-quiz">Start the Space Weather Quiz</button>
+      <h2>Test your Super-Science Knowledge! 💡</h2>
+      <p>You listened to the story! Now, show off your knowledge with this quick quiz.</p>
+      <button id="start-quiz">Start the Space Weather Quiz!</button>
     </div>
-
+    
+    <p style="text-align: center; margin-top: 40px; font-size: 1.2em; font-weight: 600; color: var(--heading);">
+        Hope you learned about space weather.
+    </p>
+    <p style="text-align: center; margin-top: 0px; font-size: 1.2em; font-weight: 600; color: var(--heading);">
+        Thank you!
+    </p>
   </div>
 
   <div id="event-modal" role="dialog" aria-hidden="true">
     <div class="event-card" id="event-card">
       <span class="close" id="event-close">✕</span>
       <h3 id="event-title">Event title</h3>
-      <img id="event-image" src="" alt="Event image" />
+      <img id="event-image" src="" alt="" />
       <p id="event-info"></p>
-      <p style="font-size:0.9em;color:#444;"><em>Replace images or text with links you prefer.</em></p>
+      <p style="font-size:0.8em;color:#777; text-align:center;">Information from GOES satellites.</p>
     </div>
   </div>
 
@@ -288,7 +381,7 @@
     <div class="quiz-container" role="document">
       <span class="close-button" id="quiz-close">×</span>
       <h1>Space Weather Quiz 🛰️</h1>
-      <p style="color:#d9e9ff;">Answer the questions based only on the story content above. Options are shuffled each time.</p>
+      <p style="color:#d9e9ff;">Answer the questions based only on the story content above.</p>
       <div id="quiz-content"></div>
       <div id="results" style="display:none;"></div>
       <div style="text-align:right; margin-top:20px;">
@@ -297,52 +390,77 @@
     </div>
   </div>
 
-  <script>
-    /* ---------- Event modal data ---------- */
+<script>
+    /* ---------- Event/Info modal data ---------- */
     const eventData = {
+      // GOES Information Added Here
+      goes: {
+        title: "GOES Satellites: Space Weather Watchdogs",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/ea/GOES-R_satellite_in_space.jpg",
+        info: "GOES (Geostationary Operational Environmental Satellites) satellites are super important for predicting Space Weather! They keep their eyes glued to the Sun to see when a big solar storm is coming. This gives people time to prepare and protect things like communications, GPS, and the power grid. They use cool tools like the Compact Coronagraph-1 (CCOR-1) to see big solar flares and solar bursts (CMEs) happening in real-time!"
+      },
+      // Existing event data (Simplified info for child-friendly tone, though main story doesn't link to these directly)
       miyake: {
         title: "Miyake Event (774–775 AD)",
         img: "images/SEP_event.png",
-        info: "A strong solar particle event inferred from tree-ring data. Shows that high-energy solar events happened in the past."
+        info: "A super strong blast of solar particles that happened long ago! Scientists know about it because they found traces in old trees!"
       },
       carrington: {
         title: "Carrington Event (1859)",
         img: "images/carrington.png",
-        info: "The Carrington Event caused telegraph system fires and auroras worldwide — a classic example of how geomagnetic storms impact technology."
+        info: "The biggest magnetic storm ever recorded! It caused the telegraph system (the old internet!) to catch fire and made the Northern Lights visible even near the Equator."
       },
       nyrail: {
         title: "New York Railroad Storm (1921)",
         img: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Space_weather_effects.jpg",
-        info: "Power surges affected rail switchboards and electric infrastructure."
+        info: "A storm that caused electric surges, tripping fuses and making power jump where it shouldn't."
       },
       coldwar: {
         title: "Cold War Storm (1967)",
         img: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Space_weather_effects.jpg",
-        info: "Severe interference with early radar and communications during the Cold War era."
+        info: "This storm messed up early radar and communication systems, making people think they were being attacked!"
       },
       quebec: {
         title: "Québec Blackout (1989)",
         img: "https://upload.wikimedia.org/wikipedia/commons/6/63/Hydro-Quebec_-_Blackout_Map.png",
-        info: "A geomagnetic storm collapsed the Hydro-Québec grid and caused a widespread blackout."
+        info: "A big solar storm caused the power grid in a whole province (Québec) to fail, leading to a huge blackout!"
       },
       halloween: {
         title: "Halloween Storms (2003)",
         img: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Space_weather_effects.jpg",
-        info: "Powerful storms that damaged satellites and caused disruptions in some regions."
+        info: "Powerful storms that hurt some orbiting satellites and caused problems for astronauts."
       },
       near_miss: {
         title: "The Near Miss (2012)",
         img: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Space_weather_effects.jpg",
-        info: "A Carrington-class coronal mass ejection that missed Earth — highlighted how close we've come to a major impact."
+        info: "A giant solar burst, just like the Carrington Event, that zoomed past Earth! We were lucky!"
       },
       g5_2024: {
         title: "G5 Geomagnetic Storm (2024)",
         img: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Space_weather_effects.jpg",
-        info: "Large geomagnetic storm in 2024 with auroras visible at low latitudes and temporary GPS degradation in some areas."
+        info: "A big recent magnetic storm that caused beautiful auroras you could see far south and made GPS a little shaky for a short time."
       }
     };
 
-    // Open event popup
+    // Open info popup (Updated selector to .info-link)
+    document.querySelectorAll('.info-link').forEach(el=>{
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        const key = el.getAttribute('data-info'); // Use data-info attribute
+        const d = eventData[key];
+        if(!d) return;
+        
+        // Populate modal with GOES data
+        document.getElementById('event-title').textContent = d.title;
+        document.getElementById('event-image').src = d.img;
+        document.getElementById('event-info').textContent = d.info;
+        
+        document.getElementById('event-modal').style.display = 'flex';
+        document.getElementById('event-modal').setAttribute('aria-hidden','false');
+      });
+    });
+    
+    // Original event-link logic (Kept for compatibility with other links if any exist/are added later)
     document.querySelectorAll('.event-link').forEach(el=>{
       el.addEventListener('click', function(e){
         e.preventDefault();
@@ -353,113 +471,125 @@
         document.getElementById('event-image').src = d.img;
         document.getElementById('event-info').textContent = d.info;
         document.getElementById('event-modal').style.display = 'flex';
+        document.getElementById('event-modal').setAttribute('aria-hidden','false');
       });
     });
-    document.getElementById('event-close').addEventListener('click', ()=> document.getElementById('event-modal').style.display='none');
-    document.getElementById('event-modal').addEventListener('click', (e)=>{ if(e.target.id==='event-modal') e.currentTarget.style.display='none'; });
+    
+    // Close modal function
+    function closeEventModal() {
+        document.getElementById('event-modal').style.display='none';
+        document.getElementById('event-modal').setAttribute('aria-hidden','true');
+    }
+    
+    document.getElementById('event-close').addEventListener('click', closeEventModal);
+    document.getElementById('event-modal').addEventListener('click', (e)=>{ if(e.target.id==='event-modal') closeEventModal(); });
+
 
     /* ---------- QUIZ: questions + dynamic generation & shuffle ---------- */
     // Questions are strictly based on story facts
     const quizQuestions = [
       {
         id: 'q1',
-        q: 'What caused the beautiful auroras Alex photographed?',
+        q: 'What caused the beautiful auroras (Northern Lights)?',
         options: [
-          {value:'solar_wind', label:'Charged particles from the Sun (solar wind / magnetosphere interactions)'},
-          {value:'earth_weather', label:"Earth's humidity"},
-          {value:'meteors', label:'Burning meteors in the atmosphere'}
+          {value:'solar_wind', label:'Charged particles from the Sun hitting Earth\'s protective shield (magnetosphere)'},
+          {value:'earth_weather', label:"Earth's humidity and cold air"},
+          {value:'meteors', label:'Burning space rocks (meteors) in the sky'}
         ],
         correct: 'solar_wind'
       },
       {
         id: 'q2',
-        q: 'Which solar phenomena is most likely responsible for Chloe’s network outage in the story?',
+        q: 'Which space event caused network and communications to break?',
         options: [
-          {value:'cme', label:'A Coronal Mass Ejection (CME) or related geomagnetic storm'},
-          {value:'sunspots', label:'Regular sunspots (no direct disruption)'},
+          {value:'cme', label:'A Coronal Mass Ejection (CME) and the magnetic storm it caused'},
+          {value:'sunspots', label:'Normal sunspots on the Sun'},
           {value:'eclipse', label:'A solar eclipse'}
         ],
         correct: 'cme'
       },
       {
         id: 'q3',
-        q: 'Which systems did the story say were affected by space weather, causing Chloe’s problem?',
+        q: 'Which systems did the story say Space Weather can affect?',
         options: [
-          {value:'gps_satellites', label:'GPS and communication satellites (and radio systems)'},
+          {value:'gps_satellites', label:'GPS, radio, and communication satellites'},
           {value:'local_power', label:'Only local earthquakes'},
-          {value:'earthquakes', label:'Groundquakes increasing'}
-        ],
+          {value:'earthquakes', label:'The rumbling of Earthquakes'}
+        ]
+      ,
         correct: 'gps_satellites'
       },
       {
         id: 'q4',
-        q: 'Which region protects Earth from the most energetic solar particles?',
+        q: 'What are Auroras also known as?',
         options: [
-          {value:'magnetosphere', label:'The magnetosphere'},
-          {value:'troposphere', label:'The troposphere'},
-          {value:'ozone_layer', label:'The ozone layer'}
-        ],
-        correct: 'magnetosphere'
-      },
-      {
-        id: 'q5',
-        q: 'Which thing is LEAST affected by severe space weather (story-level answer)?',
-        options: [
-          {value:'old_books', label:'Physical books and libraries'},
-          {value:'power_grids', label:'Power grids'},
-          {value:'pipelines', label:'Oil & gas pipeline corrosion concerns'}
-        ],
-        correct: 'old_books'
-      },
-      {
-        id: 'q6',
-        q: 'What process creates the Sun’s energy (mentioned in the story)?',
-        options: [
-          {value:'fusion', label:'Nuclear fusion'},
-          {value:'fission', label:'Nuclear fission'},
-          {value:'combustion', label:'Chemical combustion'}
-        ],
-        correct: 'fusion'
-      },
-      {
-        id: 'q7',
-        q: 'Auroras are also known as the Northern and Southern ____ (story vocabulary).',
-        options: [
-          {value:'lights', label:'Lights'},
-          {value:'storms', label:'Storms'},
-          {value:'winds', label:'Winds'}
+          {value:'lights', label:'Northern/Southern Lights'},
+          {value:'storms', label:'Sky Storms'},
+          {value:'winds', label:'Space Winds'}
         ],
         correct: 'lights'
       },
       {
-        id: 'q8',
-        q: 'What danger to astronauts did the story mention as a space weather effect?',
+        id: 'q5',
+        q: 'Which one of the three main solar events hits Earth the fastest (in only 8 minutes)?',
         options: [
-          {value:'radiation', label:'Increased radiation exposure'},
-          {value:'gravity', label:'Sudden changes in gravity'},
-          {value:'temperature', label:'Rapid drop in temperature'}
+          {value:'flares', label:'Solar Flares 🔥'},
+          {value:'cme', label:'Coronal Mass Ejections 💣'},
+          {value:'sep', label:'Solar Energetic Particle Events ⚡'}
+        ],
+        correct: 'flares'
+      },
+      {
+        id: 'q6',
+        q: 'Which is a main threat of Solar Energetic Particle Events (SEPs)?',
+        options: [
+          {value:'radiation', label:'Radiation danger for astronauts and satellites'},
+          {value:'gravity', label:'Sudden changes in Earth\'s gravity'},
+          {value:'temperature', label:'Rapid drop in temperature in Greenland'}
         ],
         correct: 'radiation'
       },
       {
-        id: 'q9',
-        q: 'Where do the space weather events Ben showed in the video originate (story answer)?',
+        // *** MODIFIED QUESTION 7 to be unique ***
+        id: 'q7',
+        q: 'Which solar event takes 1–3 days to travel from the Sun to Earth?',
         options: [
-          {value:'sun', label:'The Sun'},
-          {value:'moon', label:'The Moon'},
-          {value:'jupiter', label:"Jupiter's atmosphere"}
+          {value:'cme', label:'Coronal Mass Ejections 💣'},
+          {value:'flares', label:'Solar Flares 🔥'},
+          {value:'sep', label:'Solar Energetic Particle Events ⚡'}
         ],
-        correct: 'sun'
+        correct: 'cme'
       },
       {
-        id: 'q10',
-        q: 'Disturbances in which layer cause GPS/navigation effects (as described)?',
+        // *** MODIFIED QUESTION 8 ***
+        id: 'q8',
+        q: 'Which space weather event primarily causes magnetic storms and affects power grids?',
+        options: [
+          {value:'cme', label:'Coronal Mass Ejections 💣'},
+          {value:'flares', label:'Solar Flares 🔥'},
+          {value:'sep', label:'Solar Energetic Particle Events ⚡'}
+        ],
+        correct: 'cme'
+      },
+      {
+        id: 'q9',
+        q: 'The story mentioned that disruptions happen in which layer of Earth\'s atmosphere (the "sky-layers")?',
         options: [
           {value:'ionosphere', label:'The ionosphere'},
-          {value:'troposphere', label:'The troposphere'},
+          {value:'troposphere', label:'The troposphere (where clouds are)'},
           {value:'mesosphere', label:'The mesosphere'}
         ],
         correct: 'ionosphere'
+      },
+      {
+        id: 'q10',
+        q: 'Which satellites did Ben check to see if the storm was calming down?',
+        options: [
+          {value:'goes', label:'The GOES R-Series Satellites'},
+          {value:'hubble', label:'The Hubble Telescope'},
+          {value:'moon_rover', label:'A Moon Rover'}
+        ],
+        correct: 'goes'
       }
     ];
 
@@ -475,6 +605,9 @@
     const quizModal = document.getElementById('quiz-modal');
     const quizContent = document.getElementById('quiz-content');
     const resultsDiv = document.getElementById('results');
+
+    // **FIXED: Ensure the quiz modal starts hidden if it wasn't already**
+    quizModal.style.display = 'none';
 
     // Build quiz dynamically each time - ensures shuffling + reset
     function openQuiz(){
@@ -523,8 +656,9 @@
 
       // Submit button
       const submitBtn = document.createElement('div');
-      submitBtn.style.marginTop = '12px';
-      submitBtn.innerHTML = '<button id="submit-quiz">Submit Answers</button>';
+      submitBtn.style.marginTop = '15px';
+      submitBtn.style.textAlign = 'center';
+      submitBtn.innerHTML = '<button id="submit-quiz">Submit My Answers! ✨</button>';
       quizContent.appendChild(submitBtn);
 
       document.getElementById('submit-quiz').addEventListener('click', ()=> checkQuiz(questions));
@@ -546,7 +680,7 @@
     document.getElementById('start-quiz').addEventListener('click', openQuiz);
     // Close handlers
     document.getElementById('quiz-close').addEventListener('click', closeQuiz);
-    document.getElementById('bottom-close-quiz').addEventListener('click', closeQuiz); // New bottom button handler
+    document.getElementById('bottom-close-quiz').addEventListener('click', closeQuiz); 
     quizModal.addEventListener('click', (e)=>{ if(e.target === quizModal) { closeQuiz(); } });
 
     // Check quiz answers - resets score each attempt
@@ -562,17 +696,17 @@
         } else if(selected){
           // show which answer is correct in a friendly way
           const correctLabel = q.options.find(o=>o.value===q.correct)?.label || 'correct answer';
-          fb.textContent = 'Incorrect. Correct: ' + correctLabel;
+          fb.textContent = 'Incorrect. The correct answer was: ' + correctLabel;
           fb.className = 'result incorrect';
         } else {
           const correctLabel = q.options.find(o=>o.value===q.correct)?.label || 'correct answer';
-          fb.textContent = 'Unanswered. Correct: ' + correctLabel;
+          fb.textContent = 'Unanswered. The correct answer was: ' + correctLabel;
           fb.className = 'result incorrect';
         }
       });
 
       resultsDiv.style.display='block';
-      resultsDiv.innerHTML = `<h2>Quiz Complete!</h2><p style="font-size:1.05em; color: #fffaf2;"><strong>Your Final Score: ${score}</strong> / ${questions.length}</p>`;
+      resultsDiv.innerHTML = `<h2>Quiz Complete! 🎉</h2><p style="font-size:1.05em; color: #fffaf2; text-align:center;">**Your Final Score: ${score}** / ${questions.length}</p>`;
       // scroll results into view
       document.querySelector('.quiz-container').scrollTop = document.querySelector('.quiz-container').scrollHeight;
     }
@@ -581,12 +715,67 @@
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape'){
         if(quizModal.style.display === 'flex') { closeQuiz(); }
-        if(document.getElementById('event-modal').style.display === 'flex') document.getElementById('event-modal').style.display='none';
+        if(document.getElementById('event-modal').style.display === 'flex') closeEventModal();
       }
     });
 
     /* Prevent accidental form submissions */
     document.addEventListener('submit', (e)=> e.preventDefault());
+
+
+    /* ---------- Custom Audio Player Logic (New addition) ---------- */
+    const audio = document.getElementById('foreword-audio');
+    const playPauseBtn = document.getElementById('play-pause-button');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('progress-bar');
+
+    if (audio && playPauseBtn && progressContainer && progressBar) {
+        // Toggle play/pause
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused || audio.ended) {
+                // IMPORTANT: The audio file at 'audios/audio.mp3' must be accessible
+                // for the play command to succeed.
+                audio.play().catch(error => {
+                    console.error('Playback failed. Please ensure audios/audio.mp3 is available.', error);
+                    // Provide visual feedback if playback fails (e.g., due to file not found)
+                    playPauseBtn.innerHTML = '⚠️ Error Playing';
+                    setTimeout(() => playPauseBtn.innerHTML = '▶️ Play Story', 3000);
+                });
+            } else {
+                audio.pause();
+            }
+        });
+
+        // Update button appearance on play/pause
+        audio.addEventListener('play', () => {
+            playPauseBtn.innerHTML = '⏸️ Pause Story';
+            playPauseBtn.setAttribute('aria-label', 'Pause');
+        });
+
+        audio.addEventListener('pause', () => {
+            playPauseBtn.innerHTML = '▶️ Play Story';
+            playPauseBtn.setAttribute('aria-label', 'Play');
+        });
+
+        // Update progress bar
+        audio.addEventListener('timeupdate', () => {
+            if (!isNaN(audio.duration)) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = percent + '%';
+            }
+        });
+        
+        // Handle seeking by clicking on the progress container
+        progressContainer.addEventListener('click', (e) => {
+            if (!isNaN(audio.duration)) {
+                // Calculate time based on click position
+                const clickX = e.offsetX;
+                const width = progressContainer.clientWidth;
+                const duration = audio.duration;
+                audio.currentTime = (clickX / width) * duration;
+            }
+        });
+    }
   </script>
 </body>
 </html>
